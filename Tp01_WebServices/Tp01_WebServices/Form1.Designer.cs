@@ -44,6 +44,9 @@
             this.linkImdb = new System.Windows.Forms.LinkLabel();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.textTamanioImagen = new System.Windows.Forms.Label();
+            this.buttonNext = new System.Windows.Forms.Button();
+            this.buttonBack = new System.Windows.Forms.Button();
+            this.textNumPages = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMovie)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,7 +136,7 @@
             this.listBoxSearchs.ItemHeight = 16;
             this.listBoxSearchs.Location = new System.Drawing.Point(73, 107);
             this.listBoxSearchs.Name = "listBoxSearchs";
-            this.listBoxSearchs.Size = new System.Drawing.Size(261, 500);
+            this.listBoxSearchs.Size = new System.Drawing.Size(261, 468);
             this.listBoxSearchs.TabIndex = 10;
             this.listBoxSearchs.SelectedIndexChanged += new System.EventHandler(this.listBoxSearchs_SelectedIndexChanged);
             // 
@@ -199,11 +202,43 @@
             this.textTamanioImagen.Text = "Hola lindo ;)";
             this.textTamanioImagen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // buttonNext
+            // 
+            this.buttonNext.Location = new System.Drawing.Point(259, 584);
+            this.buttonNext.Name = "buttonNext";
+            this.buttonNext.Size = new System.Drawing.Size(75, 23);
+            this.buttonNext.TabIndex = 16;
+            this.buttonNext.Text = "Next";
+            this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
+            // 
+            // buttonBack
+            // 
+            this.buttonBack.Location = new System.Drawing.Point(73, 584);
+            this.buttonBack.Name = "buttonBack";
+            this.buttonBack.Size = new System.Drawing.Size(75, 23);
+            this.buttonBack.TabIndex = 17;
+            this.buttonBack.Text = "Back";
+            this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
+            // 
+            // textNumPages
+            // 
+            this.textNumPages.AutoSize = true;
+            this.textNumPages.Location = new System.Drawing.Point(175, 589);
+            this.textNumPages.Name = "textNumPages";
+            this.textNumPages.Size = new System.Drawing.Size(55, 13);
+            this.textNumPages.TabIndex = 18;
+            this.textNumPages.Text = "Page: 0/0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 643);
+            this.Controls.Add(this.textNumPages);
+            this.Controls.Add(this.buttonBack);
+            this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.textTamanioImagen);
             this.Controls.Add(this.comboBoxType);
             this.Controls.Add(this.linkImdb);
@@ -243,6 +278,9 @@
         private System.Windows.Forms.LinkLabel linkImdb;
         private System.Windows.Forms.ComboBox comboBoxType;
         private System.Windows.Forms.Label textTamanioImagen;
+        private System.Windows.Forms.Button buttonNext;
+        private System.Windows.Forms.Button buttonBack;
+        private System.Windows.Forms.Label textNumPages;
     }
 }
 

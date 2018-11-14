@@ -19,6 +19,8 @@ namespace Tp01_WebServices
         SearchList searchList;
         Movie movie;
         Picture image;
+        string titleSearched, typeSearched, yearSearched;
+        int totalResults, numPage = 1;
 
         public Form1()
         {
@@ -37,11 +39,13 @@ namespace Tp01_WebServices
                         if(listSearch)
                         {
                             searchList = JsonConvert.DeserializeObject<SearchList>(mycontent);
+                            Int32.TryParse(searchList.totalResults, out totalResults);
                             this.listBoxSearchs.Items.Clear();
                             foreach (Search search in searchList.Search)
                             {
                                 this.listBoxSearchs.Items.Add(search.Title);
                             }
+                            this.textNumPages.Text = "Page: " + numPage + "/" + (totalResults / 10);
                         }
                         else
                         {
@@ -83,14 +87,36 @@ namespace Tp01_WebServices
         }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
+            titleSearched = typeSearched = yearSearched = "";
+
             if ((string)comboBoxType.Items[comboBoxType.SelectedIndex] == "All")
+            {
+                titleSearched = this.textBoxTitle.Text;
+                yearSearched = this.textBoxYear.Text;
+
                 GetRequest(key + "&s=" + this.textBoxTitle.Text + "&y=" + this.textBoxYear.Text, true);
+            }
             else if (this.textBoxYear.Text == "")
+            {
+                titleSearched = this.textBoxTitle.Text;
+                typeSearched = (string)comboBoxType.Items[comboBoxType.SelectedIndex];
+
                 GetRequest(key + "&s=" + this.textBoxTitle.Text + "&type=" + (string)comboBoxType.Items[comboBoxType.SelectedIndex], true);
+            }
             else if ((string)comboBoxType.Items[comboBoxType.SelectedIndex] == "All" && this.textBoxYear.Text == "")
+            {
+                titleSearched = this.textBoxTitle.Text;
+
                 GetRequest(key + "&s=" + this.textBoxTitle.Text, true);
+            }
             else
+            {
+                titleSearched = this.textBoxTitle.Text;
+                typeSearched = (string)comboBoxType.Items[comboBoxType.SelectedIndex];
+                yearSearched = this.textBoxYear.Text;
+
                 GetRequest(key + "&s=" + this.textBoxTitle.Text + "&type=" + (string)comboBoxType.Items[comboBoxType.SelectedIndex] + "&y=" + this.textBoxYear.Text, true);
+            }
         }
 
         private void listBoxSearchs_SelectedIndexChanged(object sender, EventArgs e)
@@ -130,6 +156,56 @@ namespace Tp01_WebServices
                 string title = (string)listBoxSearchs.Items[listBoxSearchs.SelectedIndex];
                 GetRequest(key + "&t=" + title + "&plot=" + plot, false);
 
+            }
+        }
+
+        private void buttonNext_Click(object sender, EventArgs e)
+        {
+            if(numPage < totalResults/10)
+            {
+                numPage++;
+
+                if (typeSearched == "")
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                }
+                else if (yearSearched == "")
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&page=" + numPage, true);
+                }
+                else if (typeSearched == "" && yearSearched == "")
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&page=" + numPage, true);
+                }
+                else
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                }
+            }
+        }
+
+        private void buttonBack_Click(object sender, EventArgs e)
+        {
+            if (numPage > 1)
+            {
+                numPage--;
+
+                if (typeSearched == "")
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                }
+                else if (yearSearched == "")
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&page=" + numPage, true);
+                }
+                else if (typeSearched == "" && yearSearched == "")
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&page=" + numPage, true);
+                }
+                else
+                {
+                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                }
             }
         }
     }
