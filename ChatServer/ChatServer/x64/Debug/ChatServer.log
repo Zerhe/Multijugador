@@ -1,0 +1,6 @@
+﻿  ServerMain.cpp
+c:\users\administrador\downloads\chatserver\chatserver\servermain.cpp(102): warning C4129: 'E': secuencia de escape de carácter no reconocida
+c:\users\administrador\downloads\chatserver\chatserver\servermain.cpp(102): warning C4129: '(': secuencia de escape de carácter no reconocida
+c:\users\administrador\downloads\chatserver\chatserver\servermain.cpp(104): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+c:\users\administrador\downloads\chatserver\chatserver\servermain.cpp(123): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+  ChatServer.vcxproj -> C:\Users\Administrador\Downloads\ChatServer\x64\Debug\ChatServer.exe

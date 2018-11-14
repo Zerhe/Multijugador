@@ -1,0 +1,13 @@
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\bin\Debug\Tp01_WebServices.exe.config
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\bin\Debug\Tp01_WebServices.exe
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\bin\Debug\Tp01_WebServices.pdb
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.csprojAssemblyReference.cache
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.Properties.Resources.resources
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.csproj.GenerateResource.cache
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.exe
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.pdb
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.Form1.resources
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Usuario\Desktop\Proyectos\Multijugador\Tp01_WebServices\Tp01_WebServices\obj\Debug\Tp01_WebServices.csproj.CopyComplete

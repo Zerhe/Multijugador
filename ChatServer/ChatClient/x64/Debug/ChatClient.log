@@ -1,0 +1,5 @@
+﻿  ClientMain.cpp
+c:\users\administrador\downloads\chatserver\chatclient\clientmain.cpp(35): warning C4244: '=': conversión de 'SOCKET' a 'int'; posible pérdida de datos
+c:\users\administrador\downloads\chatserver\chatclient\clientmain.cpp(51): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+c:\users\administrador\downloads\chatserver\chatclient\clientmain.cpp(78): warning C4267: 'argumento': conversión de 'size_t' a 'int'; posible pérdida de datos
+  ChatClient.vcxproj -> C:\Users\Administrador\Downloads\ChatServer\x64\Debug\ChatClient.exe
