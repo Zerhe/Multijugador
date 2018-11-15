@@ -23,5 +23,25 @@ namespace Tp01_WebServices
         public string YCbCrSubSampling { get; set; }
         public string ImageSize { get; set; }
         public double Megapixels { get; set; }
+
+        public string Message()
+        {
+            string x = "FileType: " + FileType + Environment.NewLine +
+                       "FileTypeExtension: " + FileTypeExtension + Environment.NewLine +
+                       "MIMEType: " + MIMEType + Environment.NewLine +
+                       "JFIFVersion: " + JFIFVersion + Environment.NewLine +
+                       "ResolutionUnit: " + ResolutionUnit + Environment.NewLine +
+                       "XResolution: " + XResolution + Environment.NewLine +
+                       "YResolution: " + YResolution + Environment.NewLine +
+                       "ImageWidth: " + ImageWidth + Environment.NewLine +
+                       "ImageHeight: " + ImageHeight + Environment.NewLine +
+                       "EncodingProcess: " + EncodingProcess + Environment.NewLine +
+                       "BitsPerSample: " + BitsPerSample + Environment.NewLine +
+                       "ColorComponents: " + ColorComponents + Environment.NewLine +
+                       "YCbCrSubSampling: " + YCbCrSubSampling + Environment.NewLine +
+                       "ImageSize: " + ImageSize + Environment.NewLine +
+                       "Megapixels: " + Megapixels + Environment.NewLine;
+            return x;
+        }
     }
 }

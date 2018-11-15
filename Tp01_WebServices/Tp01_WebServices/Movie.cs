@@ -39,6 +39,7 @@ namespace Tp01_WebServices
         public string Production { get; set; }
         public string Website { get; set; }
         public string Response { get; set; }
+        public string Error { get; set; }
 
         public string Message()
         {

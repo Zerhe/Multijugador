@@ -47,6 +47,7 @@
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonBack = new System.Windows.Forms.Button();
             this.textNumPages = new System.Windows.Forms.Label();
+            this.textBoxImageDetails = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxMovie)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,9 +75,8 @@
             // 
             this.textBoxTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTitle.Location = new System.Drawing.Point(73, 44);
-            this.textBoxTitle.Multiline = true;
             this.textBoxTitle.Name = "textBoxTitle";
-            this.textBoxTitle.Size = new System.Drawing.Size(261, 28);
+            this.textBoxTitle.Size = new System.Drawing.Size(261, 26);
             this.textBoxTitle.TabIndex = 3;
             this.textBoxTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxTitle_KeyDown);
             this.textBoxTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTitle_KeyPress);
@@ -105,9 +105,8 @@
             // 
             this.textBoxYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxYear.Location = new System.Drawing.Point(597, 43);
-            this.textBoxYear.Multiline = true;
             this.textBoxYear.Name = "textBoxYear";
-            this.textBoxYear.Size = new System.Drawing.Size(126, 28);
+            this.textBoxYear.Size = new System.Drawing.Size(126, 26);
             this.textBoxYear.TabIndex = 7;
             this.textBoxYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxTitle_KeyDown);
             this.textBoxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTitle_KeyPress);
@@ -129,18 +128,18 @@
             this.textBoxDetails.Multiline = true;
             this.textBoxDetails.Name = "textBoxDetails";
             this.textBoxDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxDetails.Size = new System.Drawing.Size(466, 500);
+            this.textBoxDetails.Size = new System.Drawing.Size(466, 468);
             this.textBoxDetails.TabIndex = 9;
             // 
             // listBoxSearchs
             // 
-            this.listBoxSearchs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxSearchs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxSearchs.ForeColor = System.Drawing.SystemColors.WindowText;
             this.listBoxSearchs.FormattingEnabled = true;
-            this.listBoxSearchs.ItemHeight = 16;
+            this.listBoxSearchs.ItemHeight = 24;
             this.listBoxSearchs.Location = new System.Drawing.Point(73, 107);
             this.listBoxSearchs.Name = "listBoxSearchs";
-            this.listBoxSearchs.Size = new System.Drawing.Size(261, 468);
+            this.listBoxSearchs.Size = new System.Drawing.Size(261, 460);
             this.listBoxSearchs.TabIndex = 10;
             this.listBoxSearchs.SelectedIndexChanged += new System.EventHandler(this.listBoxSearchs_SelectedIndexChanged);
             // 
@@ -160,12 +159,10 @@
             this.linkWeb.AutoSize = true;
             this.linkWeb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkWeb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkWeb.Location = new System.Drawing.Point(876, 521);
+            this.linkWeb.Location = new System.Drawing.Point(401, 587);
             this.linkWeb.Name = "linkWeb";
-            this.linkWeb.Size = new System.Drawing.Size(31, 17);
+            this.linkWeb.Size = new System.Drawing.Size(0, 17);
             this.linkWeb.TabIndex = 12;
-            this.linkWeb.TabStop = true;
-            this.linkWeb.Text = "N/A";
             this.linkWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkWeb_LinkClicked);
             // 
             // linkImdb
@@ -173,12 +170,10 @@
             this.linkImdb.AutoSize = true;
             this.linkImdb.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkImdb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
-            this.linkImdb.Location = new System.Drawing.Point(876, 555);
+            this.linkImdb.Location = new System.Drawing.Point(401, 617);
             this.linkImdb.Name = "linkImdb";
-            this.linkImdb.Size = new System.Drawing.Size(31, 17);
+            this.linkImdb.Size = new System.Drawing.Size(0, 17);
             this.linkImdb.TabIndex = 13;
-            this.linkImdb.TabStop = true;
-            this.linkImdb.Text = "N/A";
             this.linkImdb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkImdb_LinkClicked);
             // 
             // comboBoxType
@@ -201,9 +196,8 @@
             this.textTamanioImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textTamanioImagen.Location = new System.Drawing.Point(919, 442);
             this.textTamanioImagen.Name = "textTamanioImagen";
-            this.textTamanioImagen.Size = new System.Drawing.Size(221, 46);
+            this.textTamanioImagen.Size = new System.Drawing.Size(221, 25);
             this.textTamanioImagen.TabIndex = 15;
-            this.textTamanioImagen.Text = "N/A";
             this.textTamanioImagen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonNext
@@ -235,11 +229,22 @@
             this.textNumPages.TabIndex = 18;
             this.textNumPages.Text = "Page: 0/0";
             // 
+            // textBoxImageDetails
+            // 
+            this.textBoxImageDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxImageDetails.Location = new System.Drawing.Point(919, 470);
+            this.textBoxImageDetails.Multiline = true;
+            this.textBoxImageDetails.Name = "textBoxImageDetails";
+            this.textBoxImageDetails.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxImageDetails.Size = new System.Drawing.Size(221, 105);
+            this.textBoxImageDetails.TabIndex = 19;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 643);
+            this.Controls.Add(this.textBoxImageDetails);
             this.Controls.Add(this.textNumPages);
             this.Controls.Add(this.buttonBack);
             this.Controls.Add(this.buttonNext);
@@ -285,6 +290,7 @@
         private System.Windows.Forms.Button buttonNext;
         private System.Windows.Forms.Button buttonBack;
         private System.Windows.Forms.Label textNumPages;
+        private System.Windows.Forms.TextBox textBoxImageDetails;
     }
 }
 

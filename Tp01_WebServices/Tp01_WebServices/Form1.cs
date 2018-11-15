@@ -40,20 +40,25 @@ namespace Tp01_WebServices
                         if(listSearch)
                         {
                             searchList = JsonConvert.DeserializeObject<SearchList>(mycontent);
-                            Int32.TryParse(searchList.totalResults, out totalResults);
                             this.listBoxSearchs.Items.Clear();
-                            foreach (Search search in searchList.Search)
+                            if(searchList.Response != "False")
                             {
-                                this.listBoxSearchs.Items.Add(search.Title);
+                                Int32.TryParse(searchList.totalResults, out totalResults);
+                                foreach (Search search in searchList.Search)
+                                {
+                                    this.listBoxSearchs.Items.Add(search.Title);
+                                }
+                                this.textNumPages.Text = "Page: " + numPage + "/" + (((totalResults - 1) / 10) + 1);
                             }
-                            this.textNumPages.Text = "Page: " + numPage + "/" + (totalResults / 10);
                         }
                         else
                         {
                             movie = JsonConvert.DeserializeObject<Movie>(mycontent);
                             this.textBoxDetails.Text = movie.Message();
-                            this.linkWeb.Text = movie.Website;
-                            this.linkImdb.Text = "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=tt_rec_tti";
+                            if(movie.Website != "N/A")
+                                this.linkWeb.Text = movie.Website;
+                            if (movie.imdbID != "N/A")
+                                this.linkImdb.Text = "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=tt_rec_tti";
                             if (movie.Poster != "N/A")
                             {
                                 WebRequest request = WebRequest.Create(movie.Poster);
@@ -71,7 +76,7 @@ namespace Tp01_WebServices
                             else
                             {
                                 pictureBoxMovie.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMovie.Image")));
-                                this.textTamanioImagen.Text = "N/A";
+                                this.textTamanioImagen.Text = "";
                             }
                         }
                     }
@@ -90,41 +95,45 @@ namespace Tp01_WebServices
 
                         image = JsonConvert.DeserializeObject<Picture>(mycontent);    
                         this.textTamanioImagen.Text = "Tamanio de Imagen: " + image.ImageSize;
+                        this.textBoxImageDetails.Text = image.Message();
                     }
                 }
             }
         }
         private void buttonSearch_Click(object sender, EventArgs e)
         {
-            titleSearched = typeSearched = yearSearched = "";
-
-            if ((string)comboBoxType.Items[comboBoxType.SelectedIndex] == "All")
+            if(textBoxTitle.Text != "")
             {
-                titleSearched = this.textBoxTitle.Text;
-                yearSearched = this.textBoxYear.Text;
+                titleSearched = typeSearched = yearSearched = "";
+                numPage = 1;
+                if ((string)comboBoxType.Items[comboBoxType.SelectedIndex] == "All")
+                {
+                    titleSearched = this.textBoxTitle.Text;
+                    yearSearched = this.textBoxYear.Text;
 
-                GetRequest(key + "&s=" + this.textBoxTitle.Text + "&y=" + this.textBoxYear.Text, true);
-            }
-            else if (this.textBoxYear.Text == "")
-            {
-                titleSearched = this.textBoxTitle.Text;
-                typeSearched = (string)comboBoxType.Items[comboBoxType.SelectedIndex];
+                    GetRequest(key + "&s=" + this.textBoxTitle.Text + "&y=" + this.textBoxYear.Text, true);
+                }
+                else if (this.textBoxYear.Text == "")
+                {
+                    titleSearched = this.textBoxTitle.Text;
+                    typeSearched = (string)comboBoxType.Items[comboBoxType.SelectedIndex];
 
-                GetRequest(key + "&s=" + this.textBoxTitle.Text + "&type=" + (string)comboBoxType.Items[comboBoxType.SelectedIndex], true);
-            }
-            else if ((string)comboBoxType.Items[comboBoxType.SelectedIndex] == "All" && this.textBoxYear.Text == "")
-            {
-                titleSearched = this.textBoxTitle.Text;
+                    GetRequest(key + "&s=" + this.textBoxTitle.Text + "&type=" + (string)comboBoxType.Items[comboBoxType.SelectedIndex], true);
+                }
+                else if ((string)comboBoxType.Items[comboBoxType.SelectedIndex] == "All" && this.textBoxYear.Text == "")
+                {
+                    titleSearched = this.textBoxTitle.Text;
 
-                GetRequest(key + "&s=" + this.textBoxTitle.Text, true);
-            }
-            else
-            {
-                titleSearched = this.textBoxTitle.Text;
-                typeSearched = (string)comboBoxType.Items[comboBoxType.SelectedIndex];
-                yearSearched = this.textBoxYear.Text;
+                    GetRequest(key + "&s=" + this.textBoxTitle.Text, true);
+                }
+                else
+                {
+                    titleSearched = this.textBoxTitle.Text;
+                    typeSearched = (string)comboBoxType.Items[comboBoxType.SelectedIndex];
+                    yearSearched = this.textBoxYear.Text;
 
-                GetRequest(key + "&s=" + this.textBoxTitle.Text + "&type=" + (string)comboBoxType.Items[comboBoxType.SelectedIndex] + "&y=" + this.textBoxYear.Text, true);
+                    GetRequest(key + "&s=" + this.textBoxTitle.Text + "&type=" + (string)comboBoxType.Items[comboBoxType.SelectedIndex] + "&y=" + this.textBoxYear.Text, true);
+                }
             }
         }
 
@@ -142,14 +151,20 @@ namespace Tp01_WebServices
 
         private void linkWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            linkWeb.LinkVisited = true;
-            System.Diagnostics.Process.Start("IExplore.exe", linkWeb.Text);
+            if(linkWeb.Text != "N/A")
+            {
+                linkWeb.LinkVisited = true;
+                System.Diagnostics.Process.Start("IExplore.exe", linkWeb.Text);
+            }
         }
 
         private void linkImdb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            linkImdb.LinkVisited = true;
-            System.Diagnostics.Process.Start("IExplore.exe", linkImdb.Text);
+            if (linkImdb.Text != "N/A")
+            {
+                linkImdb.LinkVisited = true;
+                System.Diagnostics.Process.Start("IExplore.exe", linkImdb.Text);
+            }
         }
 
         private void textBoxTitle_KeyPress(object sender, KeyPressEventArgs e)
@@ -162,7 +177,6 @@ namespace Tp01_WebServices
             if (e.KeyCode == Keys.Enter)
             {
                 buttonSearch_Click(this, e);
-                this.textBoxTitle.Text = "";
             }
         }
 
@@ -184,7 +198,7 @@ namespace Tp01_WebServices
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            if(numPage < totalResults/10)
+            if(numPage < totalResults/10f)
             {
                 numPage++;
 
