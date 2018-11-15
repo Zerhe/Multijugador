@@ -21,6 +21,7 @@ namespace Tp01_WebServices
         Picture image;
         string titleSearched, typeSearched, yearSearched;
         int totalResults, numPage = 1;
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 
         public Form1()
         {
@@ -53,17 +54,25 @@ namespace Tp01_WebServices
                             this.textBoxDetails.Text = movie.Message();
                             this.linkWeb.Text = movie.Website;
                             this.linkImdb.Text = "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=tt_rec_tti";
-                            WebRequest request = WebRequest.Create(movie.Poster);
-                            using (var res = request.GetResponse())
+                            if (movie.Poster != "N/A")
                             {
-                                using (var str = res.GetResponseStream())
+                                WebRequest request = WebRequest.Create(movie.Poster);
+                                using (var res = request.GetResponse())
                                 {
-                                    pictureBoxMovie.Image = Bitmap.FromStream(str);
+                                    using (var str = res.GetResponseStream())
+                                    {
+                                        pictureBoxMovie.Image = Bitmap.FromStream(str);
+                                    }
                                 }
-                            }
 
-                            string urlPicture = WebUtility.UrlEncode(movie.Poster);
-                            GetRequest("https://www.pida.io/data/" + urlPicture + "?format=json");
+                                string urlPicture = WebUtility.UrlEncode(movie.Poster);
+                                GetRequest("https://www.pida.io/data/" + urlPicture + "?format=json");
+                            }
+                            else
+                            {
+                                pictureBoxMovie.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMovie.Image")));
+                                this.textTamanioImagen.Text = "N/A";
+                            }
                         }
                     }
                 }
@@ -127,8 +136,8 @@ namespace Tp01_WebServices
             else
                 plot = "short";
 
-            string title = (string)listBoxSearchs.Items[listBoxSearchs.SelectedIndex];
-            GetRequest(key + "&t=" + title + "&plot=" + plot, false);
+            string id = searchList.Search[listBoxSearchs.SelectedIndex].imdbID;
+            GetRequest(key + "&i=" + id + "&plot=" + plot, false);
         }
 
         private void linkWeb_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -143,6 +152,20 @@ namespace Tp01_WebServices
             System.Diagnostics.Process.Start("IExplore.exe", linkImdb.Text);
         }
 
+        private void textBoxTitle_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void textBoxTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                buttonSearch_Click(this, e);
+                this.textBoxTitle.Text = "";
+            }
+        }
+
         private void checkBoxPlot_CheckedChanged(object sender, EventArgs e)
         {
             if(this.textBoxDetails.Text != "")
@@ -153,8 +176,8 @@ namespace Tp01_WebServices
                 else
                     plot = "short";
 
-                string title = (string)listBoxSearchs.Items[listBoxSearchs.SelectedIndex];
-                GetRequest(key + "&t=" + title + "&plot=" + plot, false);
+                string id = searchList.Search[listBoxSearchs.SelectedIndex].imdbID;
+                GetRequest(key + "&i=" + id + "&plot=" + plot, false);
 
             }
         }

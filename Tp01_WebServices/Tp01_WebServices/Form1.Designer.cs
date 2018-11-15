@@ -78,6 +78,8 @@
             this.textBoxTitle.Name = "textBoxTitle";
             this.textBoxTitle.Size = new System.Drawing.Size(261, 28);
             this.textBoxTitle.TabIndex = 3;
+            this.textBoxTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxTitle_KeyDown);
+            this.textBoxTitle.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTitle_KeyPress);
             // 
             // textType
             // 
@@ -107,6 +109,8 @@
             this.textBoxYear.Name = "textBoxYear";
             this.textBoxYear.Size = new System.Drawing.Size(126, 28);
             this.textBoxYear.TabIndex = 7;
+            this.textBoxYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxTitle_KeyDown);
+            this.textBoxYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxTitle_KeyPress);
             // 
             // pictureBoxMovie
             // 
@@ -158,10 +162,10 @@
             this.linkWeb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkWeb.Location = new System.Drawing.Point(876, 521);
             this.linkWeb.Name = "linkWeb";
-            this.linkWeb.Size = new System.Drawing.Size(34, 34);
+            this.linkWeb.Size = new System.Drawing.Size(31, 17);
             this.linkWeb.TabIndex = 12;
             this.linkWeb.TabStop = true;
-            this.linkWeb.Text = "\r\nLink";
+            this.linkWeb.Text = "N/A";
             this.linkWeb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkWeb_LinkClicked);
             // 
             // linkImdb
@@ -171,10 +175,10 @@
             this.linkImdb.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkImdb.Location = new System.Drawing.Point(876, 555);
             this.linkImdb.Name = "linkImdb";
-            this.linkImdb.Size = new System.Drawing.Size(34, 34);
+            this.linkImdb.Size = new System.Drawing.Size(31, 17);
             this.linkImdb.TabIndex = 13;
             this.linkImdb.TabStop = true;
-            this.linkImdb.Text = "\r\nLink";
+            this.linkImdb.Text = "N/A";
             this.linkImdb.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkImdb_LinkClicked);
             // 
             // comboBoxType
@@ -199,7 +203,7 @@
             this.textTamanioImagen.Name = "textTamanioImagen";
             this.textTamanioImagen.Size = new System.Drawing.Size(221, 46);
             this.textTamanioImagen.TabIndex = 15;
-            this.textTamanioImagen.Text = "Hola lindo ;)";
+            this.textTamanioImagen.Text = "N/A";
             this.textTamanioImagen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonNext
