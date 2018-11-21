@@ -50,15 +50,32 @@ namespace Tp01_WebServices
                                 }
                                 this.textNumPages.Text = "Page: " + numPage + "/" + (((totalResults - 1) / 10) + 1);
                             }
+                            else
+                            {
+                                this.textNumPages.Text = "Page: 0/0";
+                                this.textBoxDetails.Text = "";
+                                pictureBoxMovie.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMovie.Image")));
+                                this.textTamanioImagen.Text = "";
+                                this.textBoxImageDetails.Text = "";
+                                this.linkWeb.Text = "";
+                                this.linkImdb.Text = "";
+                                MessageBox.Show("No se encontro resultado", "Error");
+                            }
                         }
                         else
                         {
                             movie = JsonConvert.DeserializeObject<Movie>(mycontent);
                             this.textBoxDetails.Text = movie.Message();
                             if(movie.Website != "N/A")
+                            {
+                                linkWeb.LinkVisited = false;
                                 this.linkWeb.Text = movie.Website;
+                            }
                             if (movie.imdbID != "N/A")
+                            {
+                                linkImdb.LinkVisited = false;
                                 this.linkImdb.Text = "https://www.imdb.com/title/" + movie.imdbID + "/?ref_=tt_rec_tti";
+                            }
                             if (movie.Poster != "N/A")
                             {
                                 WebRequest request = WebRequest.Create(movie.Poster);
@@ -77,6 +94,7 @@ namespace Tp01_WebServices
                             {
                                 pictureBoxMovie.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxMovie.Image")));
                                 this.textTamanioImagen.Text = "";
+                                this.textBoxImageDetails.Text = "";
                             }
                         }
                     }
@@ -198,50 +216,56 @@ namespace Tp01_WebServices
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            if(numPage < totalResults/10f)
+            if(listBoxSearchs.Items.Count > 0)
             {
-                numPage++;
+                if(numPage < totalResults/10f)
+                {
+                    numPage++;
 
-                if (typeSearched == "")
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&y=" + yearSearched + "&page=" + numPage, true);
-                }
-                else if (yearSearched == "")
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&page=" + numPage, true);
-                }
-                else if (typeSearched == "" && yearSearched == "")
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&page=" + numPage, true);
-                }
-                else
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                    if (typeSearched == "")
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                    }
+                    else if (yearSearched == "")
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&page=" + numPage, true);
+                    }
+                    else if (typeSearched == "" && yearSearched == "")
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&page=" + numPage, true);
+                    }
+                    else
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                    }
                 }
             }
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            if (numPage > 1)
+            if (listBoxSearchs.Items.Count > 0)
             {
-                numPage--;
+                if (numPage > 1)
+                {
+                    numPage--;
 
-                if (typeSearched == "")
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&y=" + yearSearched + "&page=" + numPage, true);
-                }
-                else if (yearSearched == "")
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&page=" + numPage, true);
-                }
-                else if (typeSearched == "" && yearSearched == "")
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&page=" + numPage, true);
-                }
-                else
-                {
-                    GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                    if (typeSearched == "")
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                    }
+                    else if (yearSearched == "")
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&page=" + numPage, true);
+                    }
+                    else if (typeSearched == "" && yearSearched == "")
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&page=" + numPage, true);
+                    }
+                    else
+                    {
+                        GetRequest(key + "&s=" + titleSearched + "&type=" + typeSearched + "&y=" + yearSearched + "&page=" + numPage, true);
+                    }
                 }
             }
         }
