@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 
 public class Shoot : NetworkBehaviour
 {
-
     [SerializeField]
     private GameObject bulletObject;
     [SerializeField]

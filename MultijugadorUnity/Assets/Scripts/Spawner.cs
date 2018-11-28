@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class EnemySpawner : NetworkBehaviour
+public class Spawner : NetworkBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject objetPrefab;
     [SerializeField]
-    private int numEnemys;
+    private float rangeSpawn;
 
     public override void OnStartServer()
     {
-        for (int i = 0; i < numEnemys; i++)
+        /*for (int i = 0; i < numEnemys; i++)
         {
             Vector3 spawnPosition = new Vector3(Random.Range(-8f, 8f),
                 0f,
@@ -22,6 +22,6 @@ public class EnemySpawner : NetworkBehaviour
             GameObject enemy = Instantiate(enemyPrefab, spawnPosition, spawnRotation);
 
             NetworkServer.Spawn(enemy);
-        }
+        }*/
     }
 }
