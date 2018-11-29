@@ -41,4 +41,8 @@ public class Attack : NetworkBehaviour
         //print(2);
         gameObject.GetComponent<Health>().RpcTakeDamage(attackValue);
     }
+    public void SetAttack(int newAttackValue)
+    {
+        attackValue += newAttackValue;
+    }
 }

@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114676663348651598}
   - component: {fileID: 61238896014755264}
   m_Layer: 0
-  m_Name: LifePowerUp
+  m_Name: PowerUp
   m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83d470c0a71ca20448c7d47298ca92d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yKiller: 0
+  yKiller: 7
+  numTypesPowerUp: 5
+  sprites:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  amountLifeRecovery: 20
+  amountDamageIncrease: 100
 --- !u!212 &212521722283673658
 SpriteRenderer:
   m_ObjectHideFlags: 1

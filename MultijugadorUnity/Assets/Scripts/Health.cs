@@ -36,10 +36,6 @@ public class Health : NetworkBehaviour
     {
         //print(3);
         currentHealth -= amount;
-        Vector3 vector = healthBarPivot.localScale;
-        vector.x = currentHealth / maxHealth;
-        healthBarPivot.localScale = vector;
-
         if (currentHealth <= 0)
         {
             if (revive)
@@ -51,5 +47,9 @@ public class Health : NetworkBehaviour
         }
         else if (currentHealth > maxHealth)
             currentHealth = maxHealth;
+
+        Vector3 vector = healthBarPivot.localScale;
+        vector.x = currentHealth / maxHealth;
+        healthBarPivot.localScale = vector;
     }
 }

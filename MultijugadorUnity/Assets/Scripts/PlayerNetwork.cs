@@ -9,35 +9,57 @@ public class PlayerNetwork : NetworkBehaviour
     List<Sprite> sprites;
     [SerializeField]
     SpriteRenderer sR;
+    [SyncVar(hook = "ChangeSkin")]
+    int spriteIndex;
 
-    private void Awake()
+    private void Start()
     {
-
-    }
-    void Update()
-    {
-        if (!isLocalPlayer)
+        if (!sR.sprite)
         {
+            print(spriteIndex);
+            sR.sprite = sprites[spriteIndex];
             return;
         }
     }
+    void Update()
+    {
+        
+    }
     public override void OnStartLocalPlayer()
     {
-        if (FindObjectsOfType<PlayerNetwork>().Length > 1)
+        /*if (FindObjectsOfType<PlayerNetwork>().Length == 1)
         {
-            CmdChangeSkin();
+            RpcChangeSkin(0);
         }
+        else if (FindObjectsOfType<PlayerNetwork>().Length == 2)
+        {
+            CmdChangeSkin(1);
+        }*/
+        /*if (isServer)
+        {
+            print("asdassda");
+            RpcChangeSkin(FindObjectsOfType<PlayerNetwork>().Length);
+        }
+        else
+            CmdChangeSkin(FindObjectsOfType<PlayerNetwork>().Length);*/
+        if (isServer)
+            spriteIndex = FindObjectsOfType<PlayerNetwork>().Length;
+        else
+            CmdChangeSkin(FindObjectsOfType<PlayerNetwork>().Length);
+
     }
     [Command]
-    public void CmdChangeSkin()
+    public void CmdChangeSkin(int numPlayer)
     {
-        if(isServer)
-            RpcChangeSkin();
+        print(numPlayer);
+        spriteIndex = FindObjectsOfType<PlayerNetwork>().Length;
+        //RpcChangeSkin(numPlayer);
     }
-    [ClientRpc]
-    public void RpcChangeSkin()
+    public void ChangeSkin(int numPlayer)
     {
-        sR.sprite = sprites[1];
-        sR.flipX = false;
+        print(isServer);
+        sR.sprite = sprites[numPlayer];
+        if (numPlayer == 2)
+            sR.flipX = false;
     }
 }
