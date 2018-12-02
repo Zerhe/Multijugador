@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 114127942757467330}
   - component: {fileID: 114168391028847174}
   - component: {fileID: 114881306700397140}
+  - component: {fileID: 114867143900179208}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -333,9 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4163faa2c9ddb48a104cecc991b940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 500
+  maxHealth: 1000
   healthBarPivot: {fileID: 4834211795364212}
-  revive: 0
 --- !u!114 &114127942757467330
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -347,7 +347,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488a99659920a54488060c111a4b3888, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackValue: 5
+  attackValue: 1
 --- !u!114 &114168391028847174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -412,6 +412,17 @@ MonoBehaviour:
     i15: 121
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
+--- !u!114 &114867143900179208
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921831309618632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a49dddd6483dd47a452ac173f10de1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114881306700397140
 MonoBehaviour:
   m_ObjectHideFlags: 1

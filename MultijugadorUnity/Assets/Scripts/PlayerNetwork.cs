@@ -5,61 +5,55 @@ using UnityEngine.Networking;
 
 public class PlayerNetwork : NetworkBehaviour
 {
+    UIPlayer uiP;
     [SerializeField]
     List<Sprite> sprites;
     [SerializeField]
     SpriteRenderer sR;
     [SyncVar(hook = "ChangeSkin")]
-    int spriteIndex;
+    int playerIndex;
 
+    private void Awake()
+    {
+        uiP = GetComponent<UIPlayer>();
+    }
     private void Start()
     {
-        if (!sR.sprite)
+        if (!sR.sprite && playerIndex != 0)
         {
-            print(spriteIndex);
-            sR.sprite = sprites[spriteIndex];
+            uiP.SetUi(playerIndex);
+            sR.sprite = sprites[playerIndex];
             return;
         }
     }
-    void Update()
-    {
-        
-    }
     public override void OnStartLocalPlayer()
-    {
-        /*if (FindObjectsOfType<PlayerNetwork>().Length == 1)
-        {
-            RpcChangeSkin(0);
-        }
-        else if (FindObjectsOfType<PlayerNetwork>().Length == 2)
-        {
-            CmdChangeSkin(1);
-        }*/
-        /*if (isServer)
-        {
-            print("asdassda");
-            RpcChangeSkin(FindObjectsOfType<PlayerNetwork>().Length);
-        }
-        else
-            CmdChangeSkin(FindObjectsOfType<PlayerNetwork>().Length);*/
+    {        
         if (isServer)
-            spriteIndex = FindObjectsOfType<PlayerNetwork>().Length;
+        {
+            playerIndex = FindObjectsOfType<PlayerNetwork>().Length;
+            //uiP.SetUi(playerIndex);
+        }
         else
+        {
             CmdChangeSkin(FindObjectsOfType<PlayerNetwork>().Length);
-
+        }
     }
     [Command]
     public void CmdChangeSkin(int numPlayer)
     {
-        print(numPlayer);
-        spriteIndex = FindObjectsOfType<PlayerNetwork>().Length;
+        playerIndex = FindObjectsOfType<PlayerNetwork>().Length;
+        //uiP.SetUi(playerIndex);
         //RpcChangeSkin(numPlayer);
     }
     public void ChangeSkin(int numPlayer)
     {
-        print(isServer);
         sR.sprite = sprites[numPlayer];
         if (numPlayer == 2)
             sR.flipX = false;
+        uiP.SetUi(numPlayer);
+    }
+    public int GetPlayerIndex()
+    {
+        return playerIndex;
     }
 }

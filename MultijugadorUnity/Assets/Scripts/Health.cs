@@ -11,28 +11,28 @@ public class Health : NetworkBehaviour
     private float currentHealth;
     [SerializeField]
     private Transform healthBarPivot;
-    [SerializeField]
-    private bool revive;
+    private bool revive = false;
+    private bool poison = false;
+    private float timerPoison = 0;
+    private float timerPoison02 = 0;
+    private float amountPosion = 0;
+    private float durationPoison = 0;
+    private float periodPoison = 0;
+
 
     void Start()
     {
         currentHealth = maxHealth;
-        if (isLocalPlayer)
-        {
-            
-        }
     }
 
-    /*public void TakeDamage(int amount)
+    private void Update()
     {
-        if (isServer)
-        {
-            RpcTakeDamage(amount);
-        }
-    }*/
+        if (poison)
+            Poison();
+    }
 
     [ClientRpc]
-    public void RpcTakeDamage(int amount)
+    public void RpcTakeDamage(float amount)
     {
         //print(3);
         currentHealth -= amount;
@@ -51,5 +51,37 @@ public class Health : NetworkBehaviour
         Vector3 vector = healthBarPivot.localScale;
         vector.x = currentHealth / maxHealth;
         healthBarPivot.localScale = vector;
+    }
+    //[ClientRpc]
+    public void Poison()
+    {
+        timerPoison += Time.deltaTime;
+        timerPoison02 += Time.deltaTime;
+
+        if (timerPoison > durationPoison)
+        {
+            poison = false;
+            timerPoison = 0;
+        }
+        if(timerPoison02 > periodPoison)
+        {
+            RpcTakeDamage(amountPosion);
+            timerPoison02 = 0;
+        }
+    }
+    public void SetPoison(float aPoison, float dPoison, float pPoison)
+    {
+        amountPosion = aPoison;
+        durationPoison = dPoison;
+        periodPoison = pPoison;
+        poison = true;
+    }
+    public float GetCurrentHealth()
+    {
+        return currentHealth;
+    }
+    public float GetMaxHealth()
+    {
+        return maxHealth;
     }
 }

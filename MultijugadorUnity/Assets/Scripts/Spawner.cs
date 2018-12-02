@@ -8,20 +8,28 @@ public class Spawner : NetworkBehaviour
     public GameObject objetPrefab;
     [SerializeField]
     private float rangeSpawn;
+    [SerializeField]
+    private float timeSpawn;
+    private float timerSpawn;
 
-    public override void OnStartServer()
+    private void Update()
     {
-        /*for (int i = 0; i < numEnemys; i++)
+        timerSpawn += Time.deltaTime;
+
+        if (timerSpawn > timeSpawn)
         {
-            Vector3 spawnPosition = new Vector3(Random.Range(-8f, 8f),
-                0f,
-                Random.Range(-8f, 8f));
+            SpawnObject();
+            timerSpawn = 0;
+        }
 
-            Quaternion spawnRotation = Quaternion.Euler(0f, Random.Range(0f, 359f), 0);
-
-            GameObject enemy = Instantiate(enemyPrefab, spawnPosition, spawnRotation);
-
-            NetworkServer.Spawn(enemy);
-        }*/
+    }
+    public void SpawnObject()
+    {
+        Vector3 spawnPosition = new Vector3
+                (transform.position.x + Random.Range(-rangeSpawn, rangeSpawn),
+                transform.position.y + Random.Range(-rangeSpawn, rangeSpawn),
+                0f);
+        GameObject obj = Instantiate(objetPrefab, spawnPosition, transform.rotation);
+        NetworkServer.Spawn(obj);
     }
 }

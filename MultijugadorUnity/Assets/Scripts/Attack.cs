@@ -7,7 +7,7 @@ public class Attack : NetworkBehaviour
 {
     Collider2D coll;
     [SerializeField]
-    int attackValue;
+    float attackValue;
 
     void Start()
     {
@@ -36,13 +36,18 @@ public class Attack : NetworkBehaviour
         }
     }
     [Command]
-    public void CmdTakeDamage(GameObject gameObject, int attackValue)
+    public void CmdTakeDamage(GameObject gameObject, float attackValue)
     {
         //print(2);
         gameObject.GetComponent<Health>().RpcTakeDamage(attackValue);
     }
-    public void SetAttack(int newAttackValue)
+    [ClientRpc]
+    public void RpcSetAttack(int newAttackValue)
     {
         attackValue += newAttackValue;
+    }
+    public float GetAttackValue()
+    {
+        return attackValue;
     }
 }
