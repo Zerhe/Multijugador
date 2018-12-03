@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Enemy
   - PanelOrigin
   - PowerUp
+  - Minion
   layers:
   - Default
   - TransparentFX

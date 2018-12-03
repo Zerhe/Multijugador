@@ -5,7 +5,6 @@ using UnityEngine.Networking;
 
 public class Minion : NetworkBehaviour
 {
-
     Animator animator;
     [SerializeField]
     float velMov;
@@ -24,9 +23,9 @@ public class Minion : NetworkBehaviour
         transform.Translate(Vector3.right * Time.deltaTime * velMov);
         animator.SetTrigger("walk");
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        print("ayy");
+        //print("ayy");
         if(collision.gameObject.tag == "Player")
         {
             velMov = 0;
@@ -34,14 +33,14 @@ public class Minion : NetworkBehaviour
             animator.SetTrigger("skill_1");
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (isServer && collision.gameObject.tag == "Player")
         {
             timerAttack += Time.deltaTime;
             if(timerAttack > timeAttack)
             {
-                print("ahhhhh");
+                //print("ahhhhh");
                 collision.gameObject.GetComponent<Health>().RpcTakeDamage(amountAttack);
                 timerAttack = 0;
             }

@@ -7,11 +7,6 @@ public class PowerUpInteraction : NetworkBehaviour
 {
     Collider2D coll;
 
-    void Start ()
-    {
-		
-	}
-	
 	void Update ()
     {
         if (isLocalPlayer)
@@ -23,7 +18,7 @@ public class PowerUpInteraction : NetworkBehaviour
                 {
                     if (coll.tag == "PowerUp")
                     {
-                        print(1);
+                        //print(1);
                         if (isServer)
                             coll.GetComponent<PowerUp>().PowerUpEffect(this.gameObject);
                         else

@@ -49,7 +49,10 @@ public class PlayerNetwork : NetworkBehaviour
     {
         sR.sprite = sprites[numPlayer];
         if (numPlayer == 2)
-            sR.flipX = false;
+        {
+            sR.transform.rotation = new Quaternion(0, 180, 0, 0);
+
+        }
         uiP.SetUi(numPlayer);
     }
     public int GetPlayerIndex()

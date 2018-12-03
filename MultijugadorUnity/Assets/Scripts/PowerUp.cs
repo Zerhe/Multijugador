@@ -26,6 +26,8 @@ public class PowerUp : NetworkBehaviour
     private float durationPoison;
     [SerializeField]
     private float periodPoison;
+    [SerializeField]
+    private int amountInvocations;
 
     private void Awake()
     {
@@ -67,8 +69,10 @@ public class PowerUp : NetworkBehaviour
                 break;
             case 2:
                 players = FindObjectsOfType<PlayerNetwork>();
-                //print(players.Length);
                 players[Random.Range(0, 2)].GetComponent<Health>().SetPoison(amountPoison, durationPoison, periodPoison);
+                break;
+            case 3:
+                player.GetComponent<Skills>().RpcIncreaseAmountInvocations(amountInvocations);
                 break;
             default:
                 break;
