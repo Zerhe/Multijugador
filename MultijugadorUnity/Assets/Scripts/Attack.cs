@@ -23,7 +23,7 @@ public class Attack : NetworkBehaviour
                 coll = MouseInput.MouseColission2D();
                 if (coll)
                 {
-                    if (coll.gameObject != this.gameObject && coll.tag == this.tag)
+                    if (coll.gameObject != this.gameObject && coll.tag == this.tag || coll.tag == "Minion")
                     {
                         //print(1);
                         if (isServer)

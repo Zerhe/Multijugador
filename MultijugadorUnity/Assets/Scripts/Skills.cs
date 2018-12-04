@@ -18,10 +18,8 @@ public class Skills : NetworkBehaviour
     [Command]
     public void CmdInvokeMinion()
     {
-        print("acaLLego");
         if(amountInvocations > 0)
         {
-            print("YoteINvoko");
             GameObject obj = Instantiate(minion, spawnMinion.position, spawnMinion.rotation);
             NetworkServer.Spawn(obj);
             RpcIncreaseAmountInvocations(-1);

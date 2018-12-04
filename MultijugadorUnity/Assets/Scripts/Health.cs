@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class Health : NetworkBehaviour
 {
-
     [SerializeField]
     private float maxHealth;
     private float currentHealth;
@@ -19,18 +19,15 @@ public class Health : NetworkBehaviour
     private float durationPoison = 0;
     private float periodPoison = 0;
 
-
     void Start()
     {
         currentHealth = maxHealth;
     }
-
     private void Update()
     {
         if (poison)
             Poison();
     }
-
     [ClientRpc]
     public void RpcTakeDamage(float amount)
     {
@@ -83,5 +80,27 @@ public class Health : NetworkBehaviour
     public float GetMaxHealth()
     {
         return maxHealth;
+    }
+    private void OnDisable()
+    {
+        GameObject win = new GameObject();
+        GameObject lose = new GameObject();
+
+        if(gameObject.tag == "Player")
+        {
+            foreach(RectTransform rT in Resources.FindObjectsOfTypeAll(typeof(RectTransform)))
+            {
+                if (rT.gameObject.name == "Win")
+                    win = rT.gameObject;
+                else if (rT.gameObject.name == "Lose")
+                    lose = rT.gameObject;
+            }
+            if(isLocalPlayer)
+            {
+                lose.SetActive(true);
+            }
+            else
+                win.SetActive(true);
+        }
     }
 }

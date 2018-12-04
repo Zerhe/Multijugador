@@ -28,6 +28,8 @@ public class PowerUp : NetworkBehaviour
     private float periodPoison;
     [SerializeField]
     private int amountInvocations;
+    [SerializeField]
+    private float spikeDamage;
 
     private void Awake()
     {
@@ -73,6 +75,9 @@ public class PowerUp : NetworkBehaviour
                 break;
             case 3:
                 player.GetComponent<Skills>().RpcIncreaseAmountInvocations(amountInvocations);
+                break;
+            case 4:
+                player.GetComponent<Health>().RpcTakeDamage(spikeDamage);
                 break;
             default:
                 break;
