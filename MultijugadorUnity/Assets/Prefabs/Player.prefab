@@ -394,7 +394,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4163faa2c9ddb48a104cecc991b940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  maxHealth: 100
   healthBarPivot: {fileID: 4834211795364212}
 --- !u!114 &114127942757467330
 MonoBehaviour:

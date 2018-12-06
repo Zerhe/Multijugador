@@ -6,6 +6,8 @@ using UnityEngine.Networking;
 
 public class Health : NetworkBehaviour
 {
+    SpriteRenderer sR;
+    Collider2D coll;
     [SerializeField]
     private float maxHealth;
     private float currentHealth;
@@ -22,6 +24,8 @@ public class Health : NetworkBehaviour
     void Start()
     {
         currentHealth = maxHealth;
+        sR = GetComponentInChildren<SpriteRenderer>();
+        coll = GetComponent<Collider2D>();
     }
     private void Update()
     {
@@ -39,12 +43,16 @@ public class Health : NetworkBehaviour
                 currentHealth = maxHealth / 5;
             else
             {
-                gameObject.SetActive(false);
+                //gameObject.SetActive(false);
+                sR.enabled = false;
+                coll.enabled = false;
+                WinLose();
             }
         }
         else if (currentHealth > maxHealth)
             currentHealth = maxHealth;
-
+        if (currentHealth < 0)
+            currentHealth = 0;
         Vector3 vector = healthBarPivot.localScale;
         vector.x = currentHealth / maxHealth;
         healthBarPivot.localScale = vector;
@@ -81,7 +89,7 @@ public class Health : NetworkBehaviour
     {
         return maxHealth;
     }
-    private void OnDisable()
+    public void WinLose()
     {
         GameObject win = new GameObject();
         GameObject lose = new GameObject();
