@@ -169,6 +169,7 @@ GameObject:
   - component: {fileID: 114168391028847174}
   - component: {fileID: 114881306700397140}
   - component: {fileID: 114867143900179208}
+  - component: {fileID: 114428680987730344}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -431,6 +432,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minion: {fileID: 1000011539305864, guid: ddb8dec8e9dcf304fa398c7cc1bcd40a, type: 2}
   spawnMinion: {fileID: 4814705988986768}
+--- !u!114 &114428680987730344
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1921831309618632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d796cb3be2906854398ca3e72e694d47, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velJump: 3
+  heightJump: 1.5
+  maxJumps: 3
 --- !u!114 &114509933395141098
 MonoBehaviour:
   m_ObjectHideFlags: 1

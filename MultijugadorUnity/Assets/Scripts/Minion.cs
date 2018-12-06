@@ -55,4 +55,13 @@ public class Minion : NetworkBehaviour
             }
         }
     }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (isServer && collision.gameObject.tag == "Player")
+        {
+            velMov = velMovInitial;
+            animator.ResetTrigger("skill_1");
+            animator.SetTrigger("walk");
+        }
+    }
 }
